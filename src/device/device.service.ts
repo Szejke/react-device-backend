@@ -21,12 +21,14 @@ export class DeviceService {
     return await this.DeviceModel.find();
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} device`;
+  async findOne(id: string) {
+    return await this.DeviceModel.findById(id);
   }
 
   async update(id: string, updateDeviceDto: UpdateDeviceDto) {
-    await this.DeviceModel.findByIdAndUpdate(id, updateDeviceDto).exec();
+    return await this.DeviceModel.findByIdAndUpdate(id, updateDeviceDto, {
+      new: true,
+    });
   }
 
   async remove(id: string) {
